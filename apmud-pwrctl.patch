@@ -1,0 +1,74 @@
+diff -Naur pmud-0.10.orig/pwrctl pmud-0.10/pwrctl
+--- pmud-0.10.orig/pwrctl	Sun Dec 16 10:43:30 2001
++++ pmud-0.10/pwrctl	Thu Jun 20 00:55:48 2002
+@@ -73,20 +73,20 @@
+ 	case "$1" in
+ 	minimum)
+ 	    	# min power, set disk to spin down after 1 minute
+-    		hdparm -p -S 12 /dev/hda
++    		/sbin/hdparm -p -S 12 /dev/hda
+ 	;;
+ 	medium)
+-    		hdparm -p -S 12 /dev/hda
++    		/sbin/hdparm -p -S 12 /dev/hda
+     	;;
+ 	maximum)
+ 		case "$2" in
+ 		ac)
+ 			# on mains, do not spin down
+-    			hdparm -p -S 0 /dev/hda
++    			/sbin/hdparm -p -S 0 /dev/hda
+ 		;;
+ 		*)
+     			# on battery, set disk to spin down after 5 minute
+-    			hdparm -p -S 60 /dev/hda
++    			/sbin/hdparm -p -S 60 /dev/hda
+ 		;;
+ 		esac
+     	;;
+@@ -112,7 +112,7 @@
+ 				done
+ 				))
+ 				[ ! -z "$device" ] && {
+-					/sbin/wakebay /dev/${device}
++					/usr/sbin/wakebay /dev/${device}
+ 				}
+ 		}
+ 	;;
+@@ -135,14 +135,14 @@
+ 	case "$1" in
+ 	minimum)
+  	   	ifconfig eth0 down
+-    		hdparm -d0 -S 12 /dev/hda
+-    		hdparm -d0 /dev/hdc
++    		/sbin/hdparm -d0 -S 12 /dev/hda
++    		/sbin/hdparm -d0 /dev/hdc
+     		echo 1 >/proc/sys/kernel/powersave-nap
+     	;;
+ 	medium)
+     		echo 0 >/proc/sys/kernel/powersave-nap
+-    		hdparm -d1 -p -S 12 /dev/hda
+-    		hdparm -d1 /dev/hdc
++    		/sbin/hdparm -d1 -p -S 12 /dev/hda
++    		/sbin/hdparm -d1 /dev/hdc
+     		ifconfig eth0 up
+     	;;
+ 	maximum)
+@@ -150,14 +150,14 @@
+ 		case "$2" in
+ 		ac)
+ 			# on mains, do not spin down
+-    			hdparm -d1 -p -S 0 /dev/hda
++    			/sbin/hdparm -d1 -p -S 0 /dev/hda
+ 		;;
+ 		*)
+     			# on battery, set disk to spin down after 5 minute
+-    			hdparm -d1 -p -S 60 /dev/hda
++    			/sbin/hdparm -d1 -p -S 60 /dev/hda
+ 		;;
+ 		esac
+-    		hdparm -d1 /dev/hdc
++    		/sbin/hdparm -d1 /dev/hdc
+     		ifconfig eth0 up
+     	;;
+ 	warning)
