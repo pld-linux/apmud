@@ -81,5 +81,6 @@ fi
 %attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/power
 %attr(754,root,root) /etc/rc.d/init.d/pmud
+%dir %{_sysconfdir}/power
 %attr(640,root,root) %{_sysconfdir}/power/pwrctl
 %{_mandir}/man8/*
