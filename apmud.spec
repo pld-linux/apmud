@@ -10,13 +10,13 @@ Source0:	http://linuxppc.jvc.nl/%{name}-%{version}.tgz
 Source1:	%{name}.init
 Patch0:		%{name}-pwrctl.patch
 URL:		http://linuxppc.jvc.nl/
-Requires:	chkconfig
+Requires(post,preun):	/sbin/chkconfig
 Requires:	dev
 Requires:	hdparm
 Provides:	apmd
+Obsoletes:	apmd
 ExclusiveArch:	ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	apmd
 
 %description
 pmud is a daemon which periodically polls the PMU (power manager) and
@@ -79,7 +79,7 @@ fi
 %doc BUGS CHANGES INSTALL README THANKS TODO pwrctl-local
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
-%attr(644,root,root) /etc/sysconfig/power
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/power
 %attr(754,root,root) /etc/rc.d/init.d/pmud
 %attr(640,root,root) %{_sysconfdir}/power/pwrctl
 %{_mandir}/man8/*
