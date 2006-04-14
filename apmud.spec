@@ -10,6 +10,7 @@ Source0:	http://linuxppc.jvc.nl/%{name}-%{version}.tgz
 Source1:	%{name}.init
 Patch0:		%{name}-pwrctl.patch
 URL:		http://linuxppc.jvc.nl/
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	dev
 Requires:	hdparm
@@ -60,17 +61,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add pmud
-if [ -f /var/lock/subsys/pmud ]; then
-	/etc/rc.d/init.d/pmud restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/pmud start\" to start pmud daemon."
-fi
+%service pmud restart "pmud daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/pmud ]; then
-		/etc/rc.d/init.d/pmud stop >&2
-	fi
+	%service pmud stop
 	/sbin/chkconfig --del pmud
 fi
 
