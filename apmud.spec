@@ -1,5 +1,5 @@
 Summary:	Power Manager daemon for Apple PowerBooks
-Summary(pl):	Demon zarz±dzaj±cy poborem energii dla komputerów Apple PowerBook
+Summary(pl.UTF-8):   Demon zarzÄ…dzajÄ…cy poborem energii dla komputerÃ³w Apple PowerBook
 Name:		apmud
 Version:	1.0.0
 Release:	1
@@ -25,11 +25,11 @@ performs functions such as enabling or disabling devices appropriately
 when the power source changes. It can also be instructed to signal
 init(8) that a power-failure has occured.
 
-%description -l pl
-pmud to demon regularnie odpytuj±cy PMU (jednostkê zarz±dzaj±ce
-energi±) i wykonuj±cy funkcje takie jak w³±czanie i wy³±czanie
-urz±dzeñ odpowiednio do zmian ¼ród³a zasilania. Mo¿e tak¿e powiadomiæ
-proces init o wyst±pieniu awarii zasilania.
+%description -l pl.UTF-8
+pmud to demon regularnie odpytujÄ…cy PMU (jednostkÄ™ zarzÄ…dzajÄ…ce
+energiÄ…) i wykonujÄ…cy funkcje takie jak wÅ‚Ä…czanie i wyÅ‚Ä…czanie
+urzÄ…dzeÅ„ odpowiednio do zmian ÅºrÃ³dÅ‚a zasilania. MoÅ¼e takÅ¼e powiadomiÄ‡
+proces init o wystÄ…pieniu awarii zasilania.
 
 %prep
 %setup -q -n %{name}
