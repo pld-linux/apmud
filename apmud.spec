@@ -1,5 +1,5 @@
 Summary:	Power Manager daemon for Apple PowerBooks
-Summary(pl.UTF-8):   Demon zarządzający poborem energii dla komputerów Apple PowerBook
+Summary(pl.UTF-8):	Demon zarządzający poborem energii dla komputerów Apple PowerBook
 Name:		apmud
 Version:	1.0.0
 Release:	1
